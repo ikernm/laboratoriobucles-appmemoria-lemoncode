@@ -1,8 +1,9 @@
 import "./style.css";
 
 const tarjetaImagen = document.getElementById("real-card") as HTMLImageElement;
+const tarjetaImagen1 = document.getElementById("real-card-1") as HTMLImageElement;
 
-const cartas = ['🦁','🦉','🐶','🐔','🐷','🐝'];
+const cartas = ['0','1','2','3','4','5'];
 
 const numeroAleatorioCarta = (cartas: number): number => {
     return Math.floor(Math.random() * cartas);
@@ -23,8 +24,17 @@ const mostrarCarta = (carta:string) => {
     tarjetaImagen.alt = carta;
 }
 
+const mostrarCarta1 = (carta:string) => {
+    tarjetaImagen1.src = '/images/' + numeroAleatorioCarta(cartas.length) + '.png';
+    tarjetaImagen1.alt = carta;
+}
+
 tarjetaImagen.addEventListener('click', () => {
-    const cartaAleatoria = cartas[Math.floor(Math.random() * cartas.length)];
-    tarjetaImagen.src = '/images/' + cartaAleatoria + '.png';
-    mostrarCarta(cartaAleatoria);
+    const numeroCarta = cartas[numeroAleatorioCarta(cartas.length)];
+    mostrarCarta(numeroCarta);
+});
+
+tarjetaImagen1.addEventListener('click', () => {
+    const numeroCarta = cartas[numeroAleatorioCarta(cartas.length)];
+    mostrarCarta1(numeroCarta);
 });

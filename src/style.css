@@ -27,11 +27,9 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   align-items: center;
-  display: flex;
   flex-direction: column;
   justify-content: center;
 }
@@ -56,11 +54,32 @@ h1 {
   filter: drop-shadow(0 0 2em #3178c6aa);
 }
 
+.cards-game {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  gap: 1em;
+}
+
 .card {
+  height: 100px;
+  width: 100px;
   padding: 2em;
   border-radius: 8px;
   background-color: #72c6f7;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+}
+
+#real-card {
+  width: 100%;
+  height: 100%;
+}
+
+#real-card-1 {
+  width: 100%;
+  height: 100%;
 }
 
 .read-the-docs {

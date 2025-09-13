@@ -1,4 +1,4 @@
-import { Tablero, Carta, } from "./model";
+/*import { Tablero, Carta, } from "./model";
 
 const generarNumeroAleatorio = (indiceDelArray: number) =>
   Math.floor(Math.random() * (indiceDelArray + 1));
@@ -16,3 +16,4 @@ const barajarCartas = (cartas: Carta[]): Carta[] => {
   return copiaCartas;
 };
 
+*/

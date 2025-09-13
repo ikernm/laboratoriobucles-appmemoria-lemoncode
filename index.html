@@ -1,27 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="./src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App Memoria</title>
+    <title>Vite + TS</title>
   </head>
-
   <body>
-    
-    <h1>Aplicación Memoria</h1>
-    
-    <div class="cards-game">
-      <div class="card">
-        <img src="" alt="carta" id="real-card" />
+    <h1>Bootcamp JS 2 Módulo 8-3 Mostrar un Grid de cartas</h1>
+    <div class="contenedor">
+      <div class="carta" data-indice-id="0">
+        <img data-indice-id="0" />
       </div>
-      <div class="card">
-        <img src="" alt="carta" id="real-card-1" />
+      <div class="carta" data-indice-id="1">
+        <img data-indice-id="1" />
+      </div>
+      <div class="carta" data-indice-id="2">
+        <img data-indice-id="2" />
+      </div>
+      <div class="carta" data-indice-id="3">
+        <img data-indice-id="3" />
+      </div>
+      <div class="carta" data-indice-id="4">
+        <img data-indice-id="4" />
+      </div>
+      <div class="carta" data-indice-id="5">
+        <img data-indice-id="5" />
+      </div>
+      <div class="carta" data-indice-id="6">
+        <img data-indice-id="6" />
+      </div>
+      <div class="carta" data-indice-id="7">
+        <img data-indice-id="7" />
+      </div>
+      <div class="carta" data-indice-id="8">
+        <img data-indice-id="8" />
+      </div>
+      <div class="carta" data-indice-id="9">
+        <img data-indice-id="9" />
+      </div>
+      <div class="carta" data-indice-id="10">
+        <img data-indice-id="10" />
+      </div>
+      <div class="carta" data-indice-id="11">
+        <img data-indice-id="11" />
       </div>
     </div>
-        
+    <button class="empezarPartida" id="botonEmpezarPartida">Empezar partida</button>
+    <p class="noVisible" id="parrafoGanado">Hemos encontrado todas las parejas</p>
+    <p class="noVisible" id="esLaMismaCarta">No puedes voltear esta carta</p>
+    <p id="puntos"></p>
     <script type="module" src="/src/main.ts"></script>
   </body>
-
 </html>

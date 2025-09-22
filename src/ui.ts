@@ -9,46 +9,44 @@ import {
   esPartidaCompleta
 } from './motor';
 
-export const crearTablero = () => {
-  for (let indice = 0; indice < cartas.length; indice++) {
-    const dataIndiceId = `[data-indice-id="${indice}"]`;
-    const elementoDiv = document.querySelector(`div${dataIndiceId}`);
-
-    if (elementoDiv && elementoDiv instanceof HTMLDivElement) {
-      elementoDiv.addEventListener('click', () => {  
-        if (!sePuedeVoltearLaCarta(tablero, indice)) {
+const errorVoltearCarta = (indice: number) => {
+  if (!sePuedeVoltearLaCarta(tablero, indice)) {
         const carta = tablero.cartas[indice];
         console.log("Bloqueo -> estado:", tablero.estadoPartida, 
               "estaVuelta:", carta.estaVuelta, 
               "encontrada:", carta.encontrada);
         document.getElementById("esLaMismaCarta")?.classList.remove("noVisible");
-        return;
+        return true;
       }
-      
-        voltearLaCarta(tablero, indice);
-        pintarCartas();
-      
-        if (tablero.estadoPartida !== "DosCartasLevantadas") {
+  return false;
+}
+
+const errorVoltearMasDeDosCartas = () => {
+  if (tablero.estadoPartida !== "DosCartasLevantadas") {
           return
         }
+}
 
-        const { indiceCartaVolteadaA: a, indiceCartaVolteadaB: b } = tablero;
-        if (a === undefined || b === undefined) {
-          return
-        }
+const errorCartasVolteadasAyB = () => {
+  const a = tablero.indiceCartaVolteadaA;
+  const b = tablero.indiceCartaVolteadaB;
 
-        if (sonPareja(a, b, tablero)) {
-        parejaEncontrada(tablero, a, b);
-        
+  if (a === undefined || b === undefined) {
+    return
+  }
+}
 
-        if (esPartidaCompleta(tablero)) {
+const parejasCorrectasYPartidasCompleta = () => {
+  const a = tablero.indiceCartaVolteadaA;
+  const b = tablero.indiceCartaVolteadaB;
+  if (a !== undefined && b !== undefined) {
+    if (sonPareja(a, b, tablero)) {
+      parejaEncontrada(tablero, a, b);
+    
+      if (esPartidaCompleta(tablero)) {
           document.getElementById("parrafoGanado")?.classList.remove("noVisible");
-        }
-        return;
       }
-        parejaNoEncontrada(tablero, a, b);
-        setTimeout(() => pintarCartas(), 1000);
-      })
+      return;
     }
   }
 }
@@ -71,4 +69,33 @@ botonEmpezar.addEventListener("click", () => {
   pintarCartas();
 });
 
+export const crearTablero = () => {
+  for (let indice = 0; indice < cartas.length; indice++) {
+    const dataIndiceId = `[data-indice-id="${indice}"]`;
+    const elementoDiv = document.querySelector(`div${dataIndiceId}`);
 
+    if (elementoDiv && elementoDiv instanceof HTMLDivElement) {
+        elementoDiv.addEventListener('click', () => { 
+        
+        if (errorVoltearCarta(indice)) {
+          return
+        }
+
+        voltearLaCarta(tablero, indice);
+        pintarCartas();
+
+        const a = tablero.indiceCartaVolteadaA;
+        const b = tablero.indiceCartaVolteadaB;
+
+        errorCartasVolteadasAyB();
+        errorVoltearMasDeDosCartas();
+        parejasCorrectasYPartidasCompleta();
+        
+        if (a !== undefined && b !== undefined) {
+          parejaNoEncontrada(tablero, a, b);
+          setTimeout(() => pintarCartas(), 1000);
+        }
+      })
+    }
+  }
+}
